@@ -91,22 +91,20 @@ const Navbar = () => {
 
             <div className="h-px w-full bg-gray-700" />
 
-            <Button
-              as={Link}
-              href="/signin"
-              variant="light"
-              className="justify-start px-0 text-sm font-medium text-violet-400"
-            >
-              Sign In
-            </Button>
+            <Link href={"/signin"}>
+              <Button
+                variant="ghost"
+                className="text-sm font-medium text-violet-400"
+              >
+                Sign In
+              </Button>
+            </Link>
 
-            <Button
-              as={Link}
-              href="/signup"
-              className="rounded-xl bg-white text-sm font-semibold text-black hover:bg-gray-200"
-            >
-              Get Started
-            </Button>
+            <Link href={"/signup"}>
+              <Button className="rounded-xl bg-white px-5 text-sm font-semibold text-black hover:bg-gray-200">
+                Get Started
+              </Button>
+            </Link>
           </div>
         </div>
       )}
