@@ -56,9 +56,7 @@ const LoginPage = () => {
       <Card className="w-full max-w-md border rounded-2xl shadow-md p-6 sm:p-8">
         {/* Heading */}
         <div className="text-center mb-6">
-          <h1 className="text-2xl sm:text-3xl font-bold">
-            Login
-          </h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">Login</h1>
 
           <p className="text-sm text-gray-500 mt-2">
             Start your study with Study Nook
@@ -66,19 +64,14 @@ const LoginPage = () => {
         </div>
 
         {/* Form */}
-        <Form
-          onSubmit={onSubmit}
-          className="flex flex-col gap-4 w-full"
-        >
+        <Form onSubmit={onSubmit} className="flex flex-col gap-4 w-full">
           <TextField
             isRequired
             name="email"
             type="email"
             className="w-full"
             validate={(value) => {
-              if (
-                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
-              ) {
+              if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
                 return "Please enter a valid email address";
               }
 
@@ -145,11 +138,7 @@ const LoginPage = () => {
         </div>
 
         {/* Github Login */}
-        <Button
-          onClick={signIn}
-          variant="bordered"
-          className="w-full rounded-lg"
-        >
+        <Button onClick={signIn} className="w-full rounded-lg">
           <FaGithub className="text-lg" />
           Sign in with GitHub
         </Button>
@@ -158,10 +147,7 @@ const LoginPage = () => {
         <div className="flex justify-center mt-5">
           <p className="text-sm text-gray-600 text-center">
             Don&apos;t have an account?{" "}
-            <Link
-              href="/signup"
-              className="text-blue-600 hover:underline"
-            >
+            <Link href="/signup" className="text-blue-600 hover:underline">
               Register
             </Link>
           </p>
