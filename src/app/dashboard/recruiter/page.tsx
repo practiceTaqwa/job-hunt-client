@@ -5,6 +5,9 @@ import React from "react";
 
 const DashBoardRecruiterPage = () => {
   const { data: session, isPending } = useSession();
+  if (isPending) {
+    <p>loading</p>;
+  }
   console.log("re", session);
 
   return (
