@@ -7,7 +7,11 @@ const DashBoardRecruiterPage = () => {
   const { data: session, isPending } = useSession();
   console.log("re", session);
 
-  return <div>i ame reqter</div>;
+  return (
+    <div>
+      <h2>Welcome back{session?.user?.name}</h2>
+    </div>
+  );
 };
 
 export default DashBoardRecruiterPage;
