@@ -135,7 +135,11 @@ const SignUpPage = () => {
           </TextField>
 
           {/* role */}
-          <RadioGroup name="role" defaultValue="seeker">
+          <RadioGroup
+            name="role"
+            defaultValue="seeker"
+            className={"flex gap-2"}
+          >
             <Label>Select Role</Label>
             <Description>Select Role</Description>
             <Radio value="seeker" name="seeker">
