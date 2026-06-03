@@ -32,7 +32,12 @@ const SignUpPage = () => {
       password: user.password as string,
       name: user.name as string,
       image: user.image as string,
-      role: user.role as string,
+
+      fetchOptions: {
+        body: {
+          role: user.role,
+        },
+      },
       callbackURL: "/",
     });
 
