@@ -1,183 +1,255 @@
 "use client";
 
-import { MapPin, Upload, X, ChevronDown } from "lucide-react";
+import { useState } from "react";
 
-export default function RegisterCompanyPage() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+export default function CreateJobPage() {
+  const [isRemote, setIsRemote] = useState(false);
+
+  const company = {
+    name: "HireLoop",
+    industry: "Technology",
+    approved: true,
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
 
-    console.log(Object.fromEntries(formData.entries()));
+    const payload = Object.fromEntries(formData.entries());
+
+    console.log(payload);
+
+    // API Call Here
   };
 
   return (
-    <div className="min-h-screen bg-black p-6 text-white">
-      <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950">
+    <div className="min-h-screen bg-background p-6">
+      <div className="mx-auto max-w-5xl">
         {/* Header */}
-        <div className="flex items-start justify-between border-b border-zinc-800 p-6">
-          <div>
-            <h1 className="text-3xl font-semibold">Register New Company</h1>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold">Post New Job</h1>
 
-            <p className="mt-2 text-sm text-zinc-400">
-              Enter your business details to start hiring on HireLoop.
-            </p>
-          </div>
-
-          <button type="button" className="text-zinc-400 hover:text-white">
-            <X size={20} />
-          </button>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Create a new job posting for your company.
+          </p>
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6">
-          <div className="grid gap-6 md:grid-cols-2">
-            {/* Company Name */}
-            <div>
-              <label className="mb-2 block text-sm font-medium">
-                Company Name
-              </label>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Job Information */}
+          <section className="rounded-2xl border bg-card p-6">
+            <h2 className="mb-6 text-xl font-semibold">Job Information</h2>
 
-              <input
-                type="text"
-                name="companyName"
-                placeholder="e.g. Acme Corp"
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 outline-none placeholder:text-zinc-500 focus:border-zinc-600"
-              />
-            </div>
-
-            {/* Industry */}
-            <div>
-              <label className="mb-2 block text-sm font-medium">
-                Industry / Category
-              </label>
-
-              <div className="relative">
-                <select
-                  name="industry"
-                  className="w-full appearance-none rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 outline-none focus:border-zinc-600"
-                >
-                  <option>Technology</option>
-                  <option>Healthcare</option>
-                  <option>Finance</option>
-                  <option>Education</option>
-                </select>
-
-                <ChevronDown
-                  size={18}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400"
-                />
-              </div>
-            </div>
-
-            {/* Website */}
-            <div>
-              <label className="mb-2 block text-sm font-medium">
-                Website URL
-              </label>
-
-              <input
-                type="url"
-                name="website"
-                placeholder="https://www.company.com"
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 outline-none placeholder:text-zinc-500 focus:border-zinc-600"
-              />
-            </div>
-
-            {/* Location */}
-            <div>
-              <label className="mb-2 block text-sm font-medium">Location</label>
-
-              <div className="relative">
-                <MapPin
-                  size={16}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400"
-                />
+            <div className="grid gap-5 md:grid-cols-2">
+              <div>
+                <label className="mb-2 block text-sm">Job Title</label>
 
                 <input
-                  type="text"
-                  name="location"
-                  placeholder="City, Country"
-                  className="w-full rounded-lg border border-zinc-800 bg-zinc-900 py-3 pl-11 pr-4 outline-none placeholder:text-zinc-500 focus:border-zinc-600"
+                  name="title"
+                  placeholder="Frontend Developer"
+                  className="w-full rounded-lg border px-4 py-3"
                 />
               </div>
-            </div>
 
-            {/* Employee Range */}
-            <div>
-              <label className="mb-2 block text-sm font-medium">
-                Employee Count Range
-              </label>
+              <div>
+                <label className="mb-2 block text-sm">Job Category</label>
 
-              <div className="relative">
                 <select
-                  name="employeeRange"
-                  className="w-full appearance-none rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 outline-none focus:border-zinc-600"
+                  name="category"
+                  className="w-full rounded-lg border px-4 py-3"
                 >
-                  <option>1-10 employees</option>
-                  <option>11-50 employees</option>
-                  <option>51-200 employees</option>
-                  <option>201-500 employees</option>
-                  <option>500+ employees</option>
+                  <option>Development</option>
+                  <option>Design</option>
+                  <option>Marketing</option>
+                  <option>Management</option>
                 </select>
+              </div>
 
-                <ChevronDown
-                  size={18}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400"
+              <div>
+                <label className="mb-2 block text-sm">Job Type</label>
+
+                <select
+                  name="jobType"
+                  className="w-full rounded-lg border px-4 py-3"
+                >
+                  <option>Full-time</option>
+                  <option>Part-time</option>
+                  <option>Remote</option>
+                  <option>Contract</option>
+                  <option>Internship</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm">
+                  Application Deadline
+                </label>
+
+                <input
+                  type="date"
+                  name="deadline"
+                  className="w-full rounded-lg border px-4 py-3"
                 />
               </div>
             </div>
+          </section>
 
-            {/* Upload */}
-            <div>
-              <label className="mb-2 block text-sm font-medium">
-                Company Logo
-              </label>
+          {/* Salary */}
+          <section className="rounded-2xl border bg-card p-6">
+            <h2 className="mb-6 text-xl font-semibold">Salary Information</h2>
 
-              <label className="flex cursor-pointer items-center gap-4 rounded-lg border border-dashed border-zinc-700 p-4 hover:border-zinc-500">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-zinc-700">
-                  <Upload size={18} />
-                </div>
+            <div className="grid gap-5 md:grid-cols-3">
+              <div>
+                <label className="mb-2 block text-sm">Minimum Salary</label>
 
-                <div>
-                  <p className="font-medium">Upload image</p>
+                <input
+                  type="number"
+                  name="salaryMin"
+                  className="w-full rounded-lg border px-4 py-3"
+                />
+              </div>
 
-                  <p className="text-xs text-zinc-400">PNG, JPG up to 5MB</p>
-                </div>
+              <div>
+                <label className="mb-2 block text-sm">Maximum Salary</label>
 
-                <input type="file" name="logo" className="hidden" />
-              </label>
+                <input
+                  type="number"
+                  name="salaryMax"
+                  className="w-full rounded-lg border px-4 py-3"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm">Currency</label>
+
+                <select
+                  name="currency"
+                  className="w-full rounded-lg border px-4 py-3"
+                >
+                  <option>USD</option>
+                  <option>BDT</option>
+                  <option>EUR</option>
+                </select>
+              </div>
             </div>
-          </div>
+          </section>
+
+          {/* Location */}
+          <section className="rounded-2xl border bg-card p-6">
+            <h2 className="mb-6 text-xl font-semibold">Location</h2>
+
+            <div className="space-y-4">
+              <label className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  checked={isRemote}
+                  onChange={(e) => setIsRemote(e.target.checked)}
+                />
+                Remote Position
+              </label>
+
+              <input
+                name="location"
+                disabled={isRemote}
+                placeholder="City, Country"
+                className="w-full rounded-lg border px-4 py-3 disabled:opacity-50"
+              />
+            </div>
+          </section>
 
           {/* Description */}
-          <div className="mt-6">
-            <label className="mb-2 block text-sm font-medium">
-              Brief Description
-            </label>
+          <section className="rounded-2xl border bg-card p-6">
+            <h2 className="mb-6 text-xl font-semibold">Job Description</h2>
 
-            <textarea
-              name="description"
-              rows={6}
-              placeholder="Tell us about your company's mission and culture..."
-              className="w-full resize-none rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 outline-none placeholder:text-zinc-500 focus:border-zinc-600"
-            />
-          </div>
+            <div className="space-y-5">
+              <div>
+                <label className="mb-2 block text-sm">Responsibilities</label>
+
+                <textarea
+                  name="responsibilities"
+                  rows={6}
+                  className="w-full rounded-lg border p-4"
+                  placeholder="Describe job responsibilities..."
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm">Requirements</label>
+
+                <textarea
+                  name="requirements"
+                  rows={6}
+                  className="w-full rounded-lg border p-4"
+                  placeholder="Required skills and qualifications..."
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm">
+                  Benefits (Optional)
+                </label>
+
+                <textarea
+                  name="benefits"
+                  rows={5}
+                  className="w-full rounded-lg border p-4"
+                  placeholder="Health insurance, bonuses, etc..."
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* Company */}
+          <section className="rounded-2xl border bg-card p-6">
+            <h2 className="mb-6 text-xl font-semibold">Company Information</h2>
+
+            <div className="grid gap-5 md:grid-cols-2">
+              <div>
+                <label className="mb-2 block text-sm">Company Name</label>
+
+                <input
+                  value={company.name}
+                  disabled
+                  className="w-full rounded-lg border px-4 py-3"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm">Industry</label>
+
+                <input
+                  value={company.industry}
+                  disabled
+                  className="w-full rounded-lg border px-4 py-3"
+                />
+              </div>
+            </div>
+
+            <div className="mt-5">
+              {company.approved ? (
+                <span className="rounded-full bg-green-100 px-3 py-1 text-sm text-green-700">
+                  Approved Company
+                </span>
+              ) : (
+                <span className="rounded-full bg-red-100 px-3 py-1 text-sm text-red-700">
+                  Company Approval Pending
+                </span>
+              )}
+            </div>
+          </section>
 
           {/* Footer */}
-          <div className="mt-8 flex justify-end gap-3 border-t border-zinc-800 pt-6">
-            <button
-              type="button"
-              className="rounded-lg border border-zinc-700 px-6 py-3 transition hover:bg-zinc-900"
-            >
+          <div className="flex justify-end gap-4">
+            <button type="button" className="rounded-lg border px-6 py-3">
               Cancel
             </button>
 
             <button
               type="submit"
-              className="rounded-lg bg-white px-6 py-3 font-medium text-black transition hover:bg-zinc-200"
+              disabled={!company.approved}
+              className="rounded-lg bg-black px-6 py-3 text-white disabled:opacity-50"
             >
-              Register Company
+              Publish Job
             </button>
           </div>
         </form>
