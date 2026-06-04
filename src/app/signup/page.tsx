@@ -191,7 +191,7 @@ const SignUpPage = () => {
         <div className="flex justify-center mt-5">
           <p className="text-sm text-gray-600 text-center">
             Already have an account?{" "}
-            <Link href="/login" className="text-blue-600 hover:underline">
+            <Link href="/login" className=" hover:underline">
               Login
             </Link>
           </p>
