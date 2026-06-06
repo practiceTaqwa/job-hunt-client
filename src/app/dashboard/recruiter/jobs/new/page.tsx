@@ -1,5 +1,6 @@
 "use client";
 
+import { createJob } from "@/lib/action/job";
 import { useState } from "react";
 
 export default function CreateJobPage() {
@@ -16,11 +17,16 @@ export default function CreateJobPage() {
 
     const formData = new FormData(e.currentTarget);
 
-    const payload = Object.fromEntries(formData.entries());
+    const job = Object.fromEntries(formData.entries());
 
+    const payload = {
+      ...job,
+      ...company,
+    };
     console.log(payload);
 
     // API Call Here
+    const res = await createJob(payload)
   };
 
   return (
