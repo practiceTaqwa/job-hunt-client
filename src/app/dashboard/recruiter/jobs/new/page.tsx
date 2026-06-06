@@ -9,7 +9,9 @@ export default function CreateJobPage() {
   const company = {
     name: "HireLoop",
     industry: "Technology",
+    companyId: "com_12",
     approved: true,
+    status: true,
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,7 +28,7 @@ export default function CreateJobPage() {
     console.log(payload);
 
     // API Call Here
-    const res = await createJob(payload)
+    const res = await createJob(payload);
   };
 
   return (
