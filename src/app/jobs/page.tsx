@@ -77,9 +77,11 @@ export default async function Page() {
       </div>
 
       {/* Pass data to the Client Wrapper to handle filtering interactivity */}
-      {jobs.map((j) => (
-        <JobCard key={j._id} job={j} />
-      ))}
+      <div className=" max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+        {jobs.map((j) => (
+          <JobCard key={j._id} job={j} />
+        ))}
+      </div>
     </div>
   );
 }
