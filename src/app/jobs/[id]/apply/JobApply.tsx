@@ -31,7 +31,7 @@ const JobApply = ({ job, applicant }) => {
   const [loading, setLoading] = useState(false);
 
   // ✅ Safe change handler (HeroUI compatible)
-  const handleChange = (e) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target?.name;
     const value = e.target?.value;
 
@@ -42,7 +42,7 @@ const JobApply = ({ job, applicant }) => {
   };
 
   // ✅ Submit handler
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // validation
@@ -66,7 +66,7 @@ const JobApply = ({ job, applicant }) => {
     try {
       setLoading(true);
 
-      const res = await fetch("/api/apply", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/applications`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
