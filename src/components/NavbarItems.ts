@@ -8,7 +8,7 @@ export const navItems = [
     href: "/company",
   },
   {
-    label: "Pricing",
-    href: "/pricing",
+    label: "Plans",
+    href: "/plans",
   },
 ];
