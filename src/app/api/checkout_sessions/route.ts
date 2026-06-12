@@ -21,6 +21,7 @@ export async function POST(req: Request) {
           //   price: "price_1ThKSz0TNix7Pssy4AxwigvX",
           price: priceId,
           quantity: 1,
+          metadata:{planId}
         },
       ],
       mode: "subscription",

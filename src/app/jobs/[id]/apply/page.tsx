@@ -34,10 +34,17 @@ const Apply = async ({ params }) => {
     );
   }
 
-  const plan = {
-    name: "Free",
-    maxApplicationPerMonth: 3,
-  };
+  const planRes = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/plans/${session.user.plan}`,
+  );
+  const planData = await planRes.json();
+  const plan = planData.data;
+  console.log("pl", plan);
+  // const plan = {
+  //   id:'seeker_free',
+  //   name: "Free",
+  //   maxApplicationPerMonth: 3,
+  // };
 
   const remaining = plan.maxApplicationPerMonth - applicant.length;
 

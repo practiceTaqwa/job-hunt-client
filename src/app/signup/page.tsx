@@ -28,18 +28,18 @@ const SignUpPage = () => {
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries());
     console.log(user, "create user");
-    
+
     const plan = user.role === "seeker" ? "seeker_free" : "recruiter_free";
+
     const { data, error } = await authClient.signUp.email({
       email: user.email as string,
       password: user.password as string,
       name: user.name as string,
       image: user.image as string,
-
       fetchOptions: {
         body: {
           role: user.role,
-          plan: user.plan,
+          plan:plan,
         },
       },
     });
