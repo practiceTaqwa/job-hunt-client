@@ -5,6 +5,9 @@ import React from "react";
 
 const SeekerLayout = async ({ children }: { children: React.ReactNode }) => {
   const user = await getUserSession();
+  if (!user?.user) {
+    redirect("/signin");
+  }
   if (user?.user.role !== "seeker") {
     return redirect("/unathorized");
   }

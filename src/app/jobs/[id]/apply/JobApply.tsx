@@ -28,6 +28,7 @@ const JobApply = ({ job, applicant }) => {
     additionalNotes: "",
   });
 
+  console.log(job,'job page')
   const [loading, setLoading] = useState(false);
 
   // ✅ Safe change handler (HeroUI compatible)
@@ -53,12 +54,13 @@ const JobApply = ({ job, applicant }) => {
 
     const submissionData = {
       jobId: job?._id,
-      jobTitle: job?.jobTitle,
+      jobTitle: job?.title,
       companyName: job?.name,
 
       applicantId: applicant?.id,
       applicantName: applicant?.name,
       applicantEmail: applicant?.email,
+      status:'applied',
 
       ...formData,
     };
