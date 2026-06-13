@@ -15,7 +15,11 @@ const Navbar = () => {
   const { data: session } = useSession();
   console.log(session);
 
-  const dashboardLinsks = { seeker: "/dashboard/seeker", recruiter: "/dashboard/recruiter", };
+  const dashboardLinsks = {
+    seeker: "/dashboard/seeker",
+    recruiter: "/dashboard/recruiter",
+    admin: "/dashboard/admin",
+  };
   if (
     session?.user?.email &&
     !navItems.find((item) => item.label === "Dashboard")

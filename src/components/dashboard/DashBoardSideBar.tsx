@@ -85,7 +85,8 @@ export async function DashBoardSideBar() {
     icon: ComponentType<SVGProps<SVGSVGElement>>;
     label: string;
     href: string;
-  }[] = navLinksMap[user?.role || "seeker"];
+  }[] = navLinksMap[user?.user.role || "seeker"];
+  console.log(user?.user);
   const navContent = (
     <nav className="flex flex-col gap-1">
       {navItems.map((item) => (
