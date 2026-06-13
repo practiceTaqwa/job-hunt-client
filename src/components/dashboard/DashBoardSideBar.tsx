@@ -11,29 +11,81 @@ import {
 } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
 import Link from "next/link";
+import {
+  Bookmark,
+  Briefcase,
+  Building,
+  CreditCard,
+  FileText,
+  Users,
+} from "lucide-react";
+import { FiFileText } from "react-icons/fi";
+import { getUserSession } from "@/lib/core/session";
 
-export function DashBoardSideBar() {
-  const navItems: {
+export async function DashBoardSideBar() {
+  const user = await getUserSession();
+
+  const seekerNavLinks: {
     icon: ComponentType<SVGProps<SVGSVGElement>>;
     label: string;
     href: string;
   }[] = [
-    { icon: House, label: "Home", href: "/dashboard/recruiter" },
-    { icon: Magnifier, label: "jobs", href: "/dashboard/recruiter/jobs" },
+    { icon: House, href: "/dashboard/seeker", label: "Dashboard" },
+    { icon: Magnifier, href: "/dashboard/seeker/jobs", label: "Jobs" },
     {
-      icon: Bell,
-      label: "carate A job",
-      href: "/dashboard/recruiter/jobs/new",
+      icon: Bookmark,
+      href: "/dashboard/seeker/saved-jobs",
+      label: "Saved Jobs",
     },
-    { icon: Envelope, label: "Messages", href: "/dashboard/recruiter" },
     {
-      icon: Person,
-      label: "companyProfile",
-      href: "/dashboard/recruiter/company",
+      icon: FiFileText,
+      href: "/dashboard/seeker/applications",
+      label: "Applications",
     },
-    { icon: Gear, label: "Settings", href: "/dashboard/recruiter" },
+    { icon: CreditCard, href: "/dashboard/seeker/billing", label: "Billing" },
+    { icon: Gear, href: "/settings", label: "Settings" },
   ];
 
+  const recruiterNavLinks: {
+    icon: ComponentType<SVGProps<SVGSVGElement>>;
+    label: string;
+    href: string;
+  }[] = [
+    { icon: House, href: "/dashboard/recruiter", label: "Home" },
+    { icon: Magnifier, href: "/dashboard/recruiter/jobs", label: "Jobs" },
+    { icon: Bell, href: "/dashboard/recruiter/jobs/new", label: "Post A Job" },
+    {
+      icon: Briefcase,
+      href: "/dashboard/recruiter/company",
+      label: "Company Profile",
+    },
+    { icon: Envelope, href: "/messages", label: "Messages" },
+    { icon: Person, href: "/profile", label: "Profile" },
+    { icon: Gear, href: "/settings", label: "Settings" },
+  ];
+  const adminNavLinks: {
+    icon: ComponentType<SVGProps<SVGSVGElement>>;
+    label: string;
+    href: string;
+  }[] = [
+    { icon: House, href: "/dashboard/admin", label: "Dashboard" },
+    { icon: Users, href: "/dashboard/admin/users", label: "Users" },
+    { icon: Building, href: "/dashboard/admin/companies", label: "Companies" },
+    { icon: Briefcase, href: "/dashboard/admin/jobs", label: "Jobs" },
+    { icon: CreditCard, href: "/dashboard/admin/payments", label: "Payments" },
+    { icon: Gear, href: "/dashboard/admin/settings", label: "Settings" },
+  ];
+
+  const navLinksMap = {
+    seeker: seekerNavLinks,
+    recruiter: recruiterNavLinks,
+    admin: adminNavLinks,
+  };
+  const navItems: {
+    icon: ComponentType<SVGProps<SVGSVGElement>>;
+    label: string;
+    href: string;
+  }[] = navLinksMap[user?.role || "seeker"];
   const navContent = (
     <nav className="flex flex-col gap-1">
       {navItems.map((item) => (
